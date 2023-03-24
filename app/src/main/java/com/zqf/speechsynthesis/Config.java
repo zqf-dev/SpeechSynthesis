@@ -34,6 +34,6 @@ public class Config {
      */
     public static final String PROJECT_ID = "f422ad77ccb448fba1bc723354b755b4";
 
-    public static String inputString = "我太爷爷享了二十年福，受了半辈子苦。建国后，开始清算，从我祖爷爷到我祖爷爷的七八房姨太太，再到我太爷爷的兄弟姐妹，给杀得一个不剩。到了我太爷爷这儿，枪口冒着烟，都顶上后脑勺了，县文工队领导点了个烟袋儿说道：「要不是爷们儿，我们这一队人马早就完蛋了，哪来今天的太平盛世？";
+    public static String inputString = "我太爷爷享了二十年福，受了半辈子苦。建国后，开始清算，从我祖爷爷到我祖爷爷的七八房姨太太，再到我太爷爷的兄弟姐妹，给杀得一个不剩。到了我太爷爷这儿";
 
 }

@@ -55,17 +55,11 @@ public class AudioMain extends AppCompatActivity {
         initResoureces();
     }
 
-    @Override
-    protected void onDestroy() {
-        mediaPlayerService.stopMyPlayer(createFilePath);
-        super.onDestroy();
-    }
-
     // 初始化界面
+
     private void initView() {
         text = findViewById(R.id.input_text);
         text.setText(Config.inputString);
-        outResult = findViewById(R.id.out_result);
         startSoundRecording = findViewById(R.id.start);
         startPlay = findViewById(R.id.startplay);
         startSoundRecording.setOnClickListener(new View.OnClickListener() {
@@ -117,14 +111,12 @@ public class AudioMain extends AppCompatActivity {
             @Override
             public void handleMessage(@NonNull Message message) {
                 super.handleMessage(message);
-                switch (message.what) {
-                    case 0:
-                        Bundle bundle = message.getData();
-                        String rstr = bundle.getString("result");
-                        outResult.setText(rstr);
-                        break;
-                    default:
-                        Log.e("Unexpected value: ", String.valueOf(message.what));
+                if (message.what == 0) {
+                    Bundle bundle = message.getData();
+                    String rstr = bundle.getString("result");
+                    outResult.setText(rstr);
+                } else {
+                    Log.e("Unexpected value: ", String.valueOf(message.what));
                 }
             }
         };
@@ -133,6 +125,7 @@ public class AudioMain extends AppCompatActivity {
 
 
     // 设置请求体
+
     private RunTtsRequest getRunTtsRequest() {
         TtsConfig configbody = new TtsConfig();
         configbody.setSpeed(80);
@@ -150,8 +143,8 @@ public class AudioMain extends AppCompatActivity {
         request.withBody(body);
         return request;
     }
-
     // 发送请求
+
     private String getSttsResponse() {
         RunTtsRequest request = getRunTtsRequest();
         String ttsString = "";
@@ -164,8 +157,6 @@ public class AudioMain extends AppCompatActivity {
                 ttsString = "合成失败";
             }
             Log.i("info", ttsString);
-        } catch (ConnectionException | RequestTimeoutException | ServiceResponseException e) {
-            Log.e("error", e.toString());
         } catch (Exception e) {
             Log.e("error", e.toString());
         }
@@ -176,5 +167,11 @@ public class AudioMain extends AppCompatActivity {
     protected void onPause() {
         mediaPlayerService.stopMyPlayer(createFilePath);
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mediaPlayerService.stopMyPlayer(createFilePath);
+        super.onDestroy();
     }
 }
