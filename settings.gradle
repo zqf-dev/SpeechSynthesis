@@ -1,2 +1,5 @@
 rootProject.name = "SpeechSynthesis"
 include ':app'
+include ':base'
+include ':widget'
+include ':base'

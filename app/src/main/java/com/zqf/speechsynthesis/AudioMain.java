@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hjq.toast.Toaster;
 import com.huaweicloud.sdk.core.auth.BasicCredentials;
 import com.huaweicloud.sdk.core.exception.ConnectionException;
 import com.huaweicloud.sdk.core.exception.RequestTimeoutException;
@@ -30,7 +31,6 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 public class AudioMain extends AppCompatActivity {
 
     private EditText text;
-    private TextView outResult;
     private Button startSoundRecording;
     private Button startPlay;
     private Handler handler;
@@ -56,7 +56,6 @@ public class AudioMain extends AppCompatActivity {
     }
 
     // 初始化界面
-
     private void initView() {
         text = findViewById(R.id.input_text);
         text.setText(Config.inputString);
@@ -114,7 +113,7 @@ public class AudioMain extends AppCompatActivity {
                 if (message.what == 0) {
                     Bundle bundle = message.getData();
                     String rstr = bundle.getString("result");
-                    outResult.setText(rstr);
+                    Toaster.show(rstr);
                 } else {
                     Log.e("Unexpected value: ", String.valueOf(message.what));
                 }
@@ -128,7 +127,7 @@ public class AudioMain extends AppCompatActivity {
 
     private RunTtsRequest getRunTtsRequest() {
         TtsConfig configbody = new TtsConfig();
-        configbody.setSpeed(80);
+        configbody.setSpeed(0);
         configbody.setAudioFormat(TtsConfig.AudioFormatEnum.fromValue("wav"));
         configbody.setSampleRate(TtsConfig.SampleRateEnum.fromValue("8000"));
         configbody.setProperty(TtsConfig.PropertyEnum.fromValue("chinese_huaxiaomei_common"));
@@ -143,8 +142,8 @@ public class AudioMain extends AppCompatActivity {
         request.withBody(body);
         return request;
     }
-    // 发送请求
 
+    // 发送请求
     private String getSttsResponse() {
         RunTtsRequest request = getRunTtsRequest();
         String ttsString = "";
