@@ -2,7 +2,7 @@ package com.zqf.speechsynthesis.jzvideo
 
 import java.util.*
 
-class AutoPlay {
+class DataSource {
 
     companion object {
         //记录当前播放列表位置

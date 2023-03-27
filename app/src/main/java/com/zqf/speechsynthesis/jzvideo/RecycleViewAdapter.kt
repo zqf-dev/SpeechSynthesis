@@ -23,7 +23,7 @@ class RecycleViewAdapter(layoutResId: Int) :
         //承装的容器
         val container = holder.getView<FrameLayout>(R.id.surface_container)
         //判断播放器状态
-        if (JzVdStdRv.CURRENT_JZVD != null && AutoPlay.positionInList == position) {
+        if (JzVdStdRv.CURRENT_JZVD != null && DataSource.positionInList == position) {
             //拿到复用实例
             val parent = JzVdStdRv.CURRENT_JZVD.parent
             if (parent != null) {
@@ -37,6 +37,7 @@ class RecycleViewAdapter(layoutResId: Int) :
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
                 )
             )
+            //as 代表强转
             jzVdStdRv = JzVdStdRv.CURRENT_JZVD as JzVdStdRv
         } else {
             //相当于构造一个播放器实例
@@ -55,7 +56,7 @@ class RecycleViewAdapter(layoutResId: Int) :
             }
             //赋视频数据给播放器【可根据接口数据对应替换】
             jzVdStdRv.setUp(
-                AutoPlay.getVideoList()[position],
+                DataSource.getVideoList()[position],
                 videoTitle,
                 Jzvd.SCREEN_NORMAL
             )
@@ -68,11 +69,16 @@ class RecycleViewAdapter(layoutResId: Int) :
         jzVdStdRv.setClickUi(object : ClickUi {
             //切换时候
             override fun onClickUiToggle() {
-                AutoPlay.positionInList = position
+                //数据位置
+                DataSource.positionInList = position
                 jzVdStdRv.isAtList = false
+                //记录当前列表中正在播放的容器的位置
                 val attr = ViewAttr()
+                //实例数组
                 val location = IntArray(2)
+                //得到具体数据存放数组中
                 container.getLocationInWindow(location)
+                //赋值数据至ViewAttr->为详情页播放准备
                 attr.x = location[0]
                 attr.y = location[1]
                 attr.width = container.measuredWidth
@@ -83,7 +89,7 @@ class RecycleViewAdapter(layoutResId: Int) :
 
             //开始点击
             override fun onClickStart() {
-                AutoPlay.positionInList = position
+                DataSource.positionInList = position
             }
         })
     }

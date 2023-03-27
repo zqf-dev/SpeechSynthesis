@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.jzvd.Jzvd
 import com.zqf.speechsynthesis.databinding.ActivityMainBinding
-import com.zqf.speechsynthesis.jzvideo.AutoPlay
+import com.zqf.speechsynthesis.jzvideo.DataSource
 import com.zqf.speechsynthesis.jzvideo.DetailVideoActivity
 import com.zqf.speechsynthesis.jzvideo.RecycleViewAdapter
 import com.zqf.speechsynthesis.jzvideo.ViewAttr
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 routerAct(viewAttr)
             }
         })
-        mRecycleAdapter.setList(AutoPlay.getVideoList())
+        mRecycleAdapter.setList(DataSource.getVideoList())
     }
 
     private fun routerAct(viewAttr: ViewAttr?) {
@@ -73,7 +73,17 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Jzvd.TOOL_BAR_EXIST = true
         mainActivity = null
-        AutoPlay.positionInList = -1
+        DataSource.positionInList = -1
         Jzvd.releaseAllVideos()
+    }
+
+    override fun onResume() {
+        Jzvd.goOnPlayOnResume()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Jzvd.goOnPlayOnPause()
     }
 }

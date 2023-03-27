@@ -95,4 +95,14 @@ class DetailVideoActivity : AppCompatActivity() {
         if (Jzvd.backPress()) return
         backAnimation()
     }
+
+    override fun onResume() {
+        Jzvd.goOnPlayOnResume()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Jzvd.goOnPlayOnPause()
+    }
 }
