@@ -1,4 +1,4 @@
-package com.zqf.speechsynthesis;
+package com.zqf.speechsynthesis.speech;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,16 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hjq.toast.Toaster;
 import com.huaweicloud.sdk.core.auth.BasicCredentials;
-import com.huaweicloud.sdk.core.exception.ConnectionException;
-import com.huaweicloud.sdk.core.exception.RequestTimeoutException;
-import com.huaweicloud.sdk.core.exception.ServiceResponseException;
 import com.huaweicloud.sdk.core.http.HttpConfig;
 import com.huaweicloud.sdk.core.utils.StringUtils;
 import com.huaweicloud.sdk.sis.v1.SisClient;
@@ -25,8 +21,7 @@ import com.huaweicloud.sdk.sis.v1.model.RunTtsRequest;
 import com.huaweicloud.sdk.sis.v1.model.RunTtsResponse;
 import com.huaweicloud.sdk.sis.v1.model.TtsConfig;
 import com.huaweicloud.sdk.sis.v1.region.SisRegion;
-
-import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
+import com.zqf.speechsynthesis.R;
 
 public class AudioMain extends AppCompatActivity {
 

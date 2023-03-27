@@ -2,7 +2,7 @@
  * Copyright (c) Huawei Technologies Co., Ltd. 2022-2022. All rights reserved.
  */
 
-package com.zqf.speechsynthesis;
+package com.zqf.speechsynthesis.speech;
 
 /**
  * 功能描述

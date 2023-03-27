@@ -1,4 +1,4 @@
-package com.zqf.speechsynthesis;
+package com.zqf.speechsynthesis.speech;
 
 import android.app.Application;
 
