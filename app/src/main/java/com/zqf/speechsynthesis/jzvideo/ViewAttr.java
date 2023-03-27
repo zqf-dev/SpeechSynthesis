@@ -3,7 +3,9 @@ package com.zqf.speechsynthesis.jzvideo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
+/**
+ * View
+ */
 public class ViewAttr implements Parcelable {
     public static final Creator<ViewAttr> CREATOR = new Creator<ViewAttr>() {
         @Override

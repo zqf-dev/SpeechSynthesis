@@ -2,18 +2,19 @@ package com.zqf.speechsynthesis
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import cn.jzvd.JZUtils
 import cn.jzvd.Jzvd
-import cn.jzvd.JzvdStd
 import com.zqf.speechsynthesis.databinding.ActivityMainBinding
-import com.zqf.speechsynthesis.jzvideo.*
-import org.jzvd.jzvideo.TAG
+import com.zqf.speechsynthesis.jzvideo.AutoPlay
+import com.zqf.speechsynthesis.jzvideo.DetailVideoActivity
+import com.zqf.speechsynthesis.jzvideo.RecycleViewAdapter
+import com.zqf.speechsynthesis.jzvideo.ViewAttr
 
+/**
+ * 过于简单的就不加注释了
+ */
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
@@ -34,15 +35,18 @@ class MainActivity : AppCompatActivity() {
         RecycleViewAdapter(R.layout.item_layout)
     }
 
+    /**
+     * 初始化recycleview和数据
+     */
     private fun initView() {
-        JZUtils.hideSystemUI(this)
-        JZUtils.hideStatusBar(this)
         Jzvd.TOOL_BAR_EXIST = false
         binding.recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recycler.adapter = mRecycleAdapter
+        //Adapter点击方法
         mRecycleAdapter.setOnVideoClick(object : RecycleViewAdapter.OnVideoClick {
             override fun videoClick(focusView: ViewGroup?, viewAttr: ViewAttr?, position: Int) {
+                //点击画面跳转详情页面
                 routerAct(viewAttr)
             }
         })
@@ -63,12 +67,6 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (Jzvd.backPress()) return
         super.onBackPressed()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e(TAG, "------")
-        JzVdStdRv.releaseAllVideos()
     }
 
     override fun onDestroy() {

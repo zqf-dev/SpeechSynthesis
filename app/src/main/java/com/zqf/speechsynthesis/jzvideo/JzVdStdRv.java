@@ -8,6 +8,9 @@ import com.zqf.speechsynthesis.R;
 
 import cn.jzvd.JzvdStd;
 
+/**
+ * 自定义列表zVdStdRv
+ */
 public class JzVdStdRv extends JzvdStd {
     private ClickUi clickUi;
     private boolean isAtList;

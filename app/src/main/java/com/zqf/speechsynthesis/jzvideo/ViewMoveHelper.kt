@@ -13,6 +13,7 @@ class ViewMoveHelper(
     private val duration: Long
 ) {
 
+    //执行平移动画
     fun startAnim() {
         val xAnim: ObjectAnimator = ObjectAnimator.ofFloat(
             targetView,
