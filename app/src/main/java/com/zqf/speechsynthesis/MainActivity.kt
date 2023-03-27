@@ -11,10 +11,8 @@ import cn.jzvd.JZUtils
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
 import com.zqf.speechsynthesis.databinding.ActivityMainBinding
-import com.zqf.speechsynthesis.jzvideo.AutoPlay
-import com.zqf.speechsynthesis.jzvideo.DetailVideoActivity
-import com.zqf.speechsynthesis.jzvideo.RecycleViewAdapter
-import com.zqf.speechsynthesis.jzvideo.ViewAttr
+import com.zqf.speechsynthesis.jzvideo.*
+import org.jzvd.jzvideo.TAG
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -65,6 +63,12 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (Jzvd.backPress()) return
         super.onBackPressed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e(TAG, "------")
+        JzVdStdRv.releaseAllVideos()
     }
 
     override fun onDestroy() {
