@@ -11,6 +11,8 @@ import com.zqf.speechsynthesis.jzvideo.DataSource
 import com.zqf.speechsynthesis.jzvideo.DetailVideoActivity
 import com.zqf.speechsynthesis.jzvideo.RecycleViewAdapter
 import com.zqf.speechsynthesis.jzvideo.ViewAttr
+import com.zqf.speechsynthesis.server.CheckService
+import com.zqf.speechsynthesis.socket.AppSocket
 
 /**
  * 过于简单的就不加注释了
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
         mRecycleAdapter.setList(DataSource.getVideoList())
+        startService(Intent(this, CheckService::class.java))
     }
 
     private fun routerAct(viewAttr: ViewAttr?) {
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         mainActivity = null
         DataSource.positionInList = -1
         Jzvd.releaseAllVideos()
+        AppSocket.unconnect()
     }
 
     override fun onResume() {

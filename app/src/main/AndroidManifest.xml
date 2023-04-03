@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".speech.AudioMain" />
         <activity android:name=".jzvideo.DetailVideoActivity" />
+
+        <service android:name=".server.CheckService" />
     </application>
 
 </manifest>
