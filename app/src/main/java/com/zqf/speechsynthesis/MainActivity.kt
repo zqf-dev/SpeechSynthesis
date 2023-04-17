@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
         mRecycleAdapter.setList(DataSource.getVideoList())
-        startService(Intent(this, CheckService::class.java))
     }
 
     private fun routerAct(viewAttr: ViewAttr?) {

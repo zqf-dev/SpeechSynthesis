@@ -1,6 +1,5 @@
 package com.zqf.speechsynthesis.socket;
 
-import android.os.Process;
 import android.util.Log;
 
 import com.xuhao.didi.core.iocore.interfaces.IPulseSendable;

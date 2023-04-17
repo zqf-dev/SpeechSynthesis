@@ -23,6 +23,10 @@ import com.huaweicloud.sdk.sis.v1.model.TtsConfig;
 import com.huaweicloud.sdk.sis.v1.region.SisRegion;
 import com.zqf.speechsynthesis.R;
 
+/**
+ * 华为云：语音交互服务的功能
+ * url: https://support.huaweicloud.com/api-sis/sis_03_0111.html
+ */
 public class AudioMain extends AppCompatActivity {
 
     private EditText text;
